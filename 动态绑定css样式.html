@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			span{
+				background: red;
+				display: inline-block;
+				color: #fff;
+				padding: 10px;
+				margin: 10px 0;	
+			}
+			.changeColor span{
+				background: green;
+			}
+			.changeLength span:after{
+				content: "length";
+				margin-left: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<h1>动态 CSS Class</h1>
+			
+			<h2 v-bind:class="{red:false,blue:false}">实例 1</h2>
+			
+			<!--v-on:click="changeColor=!changeColor"点击取反值-->
+			<!--<div v-bind:class="{changeColor:changeColor}" v-on:click="changeColor=!changeColor">
+				<span>Herry1</span>
+			</div>-->
+			
+			<h2>实例 2</h2>
+			<button v-on:click="changeColor=!changeColor">change color</button>
+			<button v-on:click="changeLength =! changeLength">change length</button>
+			<div v-bind:class="compClasses">
+			    <span>Herry2</span>
+			</div>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:'#app',
+			data:{
+				changeColor:false,
+				changeLength:false
+			},
+			methods:{
+				
+			},
+			computed:{
+				compClasses:function(){
+					return {
+						changeColor:this.changeColor,
+						changeLength:this.changeLength
+					}
+				}
+			}
+		})
+	</script>
+</html>

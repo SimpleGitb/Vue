@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div v-if="item >=10">{{item}}个，有现货</div>
+			<div v-else-if="item >= 1">{{item}}个，所剩不多赶紧买吧</div>
+			<div v-else>没有库存了</div>
+			<template v-if="item >= 50">  <!--使用template不会增加dom节点-->
+				<p>注意注意！</p>
+				<p>目前现货很多，打八折哦</p>
+			</template>
+			
+			<p>i am hide</p>
+			<p>i am here</p>
+			<button>Ninja skills</button>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:"#app",
+			data:{
+				item:50,
+			},
+			methods:{
+				
+			}
+		});
+	</script>
+</html>

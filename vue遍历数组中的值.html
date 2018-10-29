@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div v-for="item in persons" v-bind:key="item.id"> <!--v-bind:key="item.id"给一个key值即可绑定input框-->
+				{{item.name}}<input type="text"  v-model="item.name"/>{{customer}}
+			</div>
+			<div v-for="(name,poper,index) in person">
+				{{poper}}:{{name}}({{index}})
+			</div>
+			<!--<div v-for="n in 10">{{n}}</div>
+			<div v-for="s in 'string'">{{s}}</div>-->
+			<button v-on:click="changeNum">click it</button>
+			<button v-on:click="add">push person</button>
+			<button v-on:click="reverse">reverse</button>
+			<ol>
+				<li v-for="sub in subs">
+					{{sub.name}}
+					<ul>
+						<li v-for="s in sub.sub">
+							{{s}}
+						</li>
+					</ul>
+				</li>
+			</ol>
+			<ul>
+				<li v-for="item in sortitems">{{item}}</li>
+			</ul>
+			<span v-html="msgHtml"></span>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:"#app",
+			data:{
+				numbers:[1,2,3,4,5],
+				persons : [
+				{	 id:1,
+					 name:'zhansan',
+				},
+				{
+					id:2,
+					name:'lisi',
+				}
+				],
+				customer : "vue",
+				person : {
+					firstName: "Jin",
+					lastName: "xiang",
+					age : 20,
+				},
+				subs:[{
+					name:"javascript", sub:["vue","react","angular"],
+				},{
+					name: "database", sub: ["mysql","mongodb","sqls"]
+				},{
+					name: "system", sub: ["macOS","linux","windows"]
+				}],
+				items:[20,23,18,65,3,19,54,56,41],
+				message:'hello Vue!',
+                msgHtml:'<h2>hello Vue!</h2>'
+			},
+			methods:{
+				changeNum: function(){
+//					this.numbers[1] = 10;
+                    Vue.set(this.numbers,1,10);  //Vue内部机制改变v-for数组中的值
+					alert(this.numbers[1]);
+				},
+				add: function(){
+					
+					//vue中的push进行了底层封装，可以对数组自动更新
+					this.persons.push({
+						id:3,
+						name:'wanger'
+					})
+				},
+				reverse: function(){
+					this.persons.reverse();
+				}
+			},
+			computed:{
+				sortitems:function(){
+					return this.items.sort(sortNumber);
+				}
+			}
+			
+		});
+		function sortNumber(a,b){
+			return a-b;
+		}
+		//数组对象方法排序:
+		function sortByKey(array,key){
+		    return array.sort(function(a,b){
+		      var x=a[key];
+		      var y=b[key];
+		      return ((x<y)?-1:((x>y)?1:0));
+		   });
+		}
+	</script>
+</html>

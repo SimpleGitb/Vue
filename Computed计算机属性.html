@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h1>Computed</h1>
+			<button v-on:click="a++">add to A</button>
+			<button v-on:click="b++">add to B</button>
+			<p>A - {{a}}</p>
+			<p>B - {{b}}</p>
+			
+			  <span v-bind:title="message">
+			    Hover your mouse over me for a few seconds to see my dynamically bound title!
+			  </span>
+			  
+			 <p>{{ message2 }}</p>
+             <button v-on:click="reverseMessage">Reverse Message</button>
+
+		</div>
+
+	</body>
+	<script src="js/vue.js"></script>
+	<script type="text/javascript">
+		var app2=new Vue({
+			el:'#app',
+			data:{
+				a:0,
+				b:0,
+				message: 'You loaded this page on ' + new Date(),
+				message2: "Hello Vue.js!"
+			},
+			 methods: {
+		        reverseMessage: function () {
+		        this.message2 = this.message2.split('').reverse().join('')
+		    }
+		  }
+
+		});
+	</script>
+</html>

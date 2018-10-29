@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-on:keyup.enter="change"/>
+			<div v-on:click="change1">{{data}}</div>
+			inputOut : {{name}}
+			
+			<form action="" method="get" v-on:submit.prevent="" >
+				
+				<input type="submit" value="提交"/>
+			</form>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:"#app",
+			data:{
+				name:"hello",
+				data:1,
+			},
+			methods:{
+				change: function(evevt){
+					this.name = evevt.target.value;
+				},
+				change1: function (){
+					let customer ={
+						name:this.data,
+					}
+					console.log(customer);
+				}
+			}
+		});
+	</script>
+	<script type="text/javascript">
+		
+	</script>
+</html>

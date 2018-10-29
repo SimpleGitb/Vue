@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!--{{message}}-->
+			
+			<ul>
+				<li v-for="product in products">
+				    {{product.id}}	{{product.quantity}} {{product.name}} {{product.phone}}
+					<span v-if="product.quantity === 0">
+						-已售空
+					</span>
+				</li>
+			</ul>
+			<h2>商品总数：{{TotalProducts}}</h2>
+		</div>
+		
+	</body>
+	<script src="https://unpkg.com/vue"></script>
+	<!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
+	<!--<script src="js/vue.js"></script>-->
+	
+		<script type="text/javascript">
+//			var app = new Vue({
+//			  el: '#app',
+//			  data: {
+//			    message: 'Hello Vue!'
+//			  }
+//			})
+            var app= new Vue({
+         	    el: '#app',  
+            	data () {
+				    return {
+				    	products: []
+				    }
+				  },
+            	computed:{
+            		TotalProducts(){
+            			return this.products.reduce((sum,product)=>{
+            				return sum+product.quantity
+            			},0)
+            		}
+            	},
+            	methods:{
+            		fetchCustomers(){
+            			var _self = this;
+            			$.ajax({
+						    type: 'GET',
+						    url: 'http://api.myjson.com/bins/74l63',
+						    dataType:"json",
+						    success:function(data) {
+						        _self.products =data;
+                              console.log(data);
+						    }
+						});
+            		}
+            	},
+            	created(){
+//          		fetch('http://api.myjson.com/bins/74l63')
+//          		.then(response => response.json())
+//          		.then(json => {
+//          			this.products = json.products
+//          		})
+                   this.fetchCustomers();
+                    
+            	}
+            })
+		</script>
+</html>

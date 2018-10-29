@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#img{
+				width: 200px;
+				height: 200px;
+				margin: 0 auto;
+				background: url(img/3.png) center no-repeat;
+			}
+			#img.burst{
+				background-image: url(img/3选中.png);
+			}
+			#box-health{
+				width: 200px;
+				border: 1px solid #000;
+				margin: 0 auto 20px auto;
+			}
+			#box-health div{
+				height: 20px;
+				background: red;
+			}
+			.controls{
+				margin: 0 auto;
+				width: 200px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body >
+		<div id="app">
+			<div id="img" v-bind:class="{burst:enter}"></div>
+			<div id="box-health">
+				<div v-bind:style="{width: health +'%'}"></div>
+			</div>
+			<div class="controls">
+				<button v-on:click="punch" v-if="!enter">使劲敲</button>
+				<button v-on:click="restart">重置</button>
+			</div>
+		</div>
+		
+	</body>
+	<script src="js/vue.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:'#app',
+			data:{
+				health:100,
+				enter:false
+			},
+			methods: {
+			 	punch:function(){
+			 		this.health -= 10;
+			 		if(this.health<=0){
+			 			this.enter=true;
+			 		}
+			 	},
+			 	restart:function(){
+			 		this.health=100;
+			 		this.enter=false;
+			 	}
+		   }
+
+		});
+	</script>
+</html>
+

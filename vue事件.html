@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#canvas{
+				width: 200px;
+				padding: 100px 20px;
+				border: 1px solid #000000;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<h1>Event</h1>
+			<button v-on:click.once="add(1)">加一岁</button>
+			<button v-on:click="subtract(1)">减一岁</button>
+			<button v-on:dblclick="add(10)">双击加一岁</button>
+			<button v-on:dblclick="subtract(10)">双击减一岁</button>
+			<p>my age is {{age}}</p>
+			
+			<div id="canvas" v-on:mousemove="updataXY">
+				{{x}} , {{y}}
+				<!--stop修饰符停止-->
+				<span @mousemove.stop="">
+					stop moving
+				</span>
+			</div>
+			<!--prevent修饰符不再载入-->
+			<a v-on:click.prevent="alert()" href="http://www.jikexueyuan.com">链接</a>
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:"#app",
+			data:{
+				age:30,
+				x:0,
+				y:0
+			},
+			methods:{
+				add:function(inc){
+					this.age += inc;
+				},
+				subtract:function(dec){
+					this.age -= dec;
+				},
+				updataXY:function(event){
+					//console.log(event);
+					this.x=event.offsetX;
+					this.y=event.offsetY;
+				},
+				alert:function(){
+					alert("提示");
+				}
+			}
+		})
+	</script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h1>键盘 Events</h1>
+			<label for="">姓名</label>
+			<!--v-on:keyup.enter.space.esc 键盘点击事件 回车 空格 退出用键盘的数字号码可替代 如enter=13-->
+			<input type="text" v-on:keyup.enter="logName" class="put"/><br /><br /><br />
+			<label for="">年龄</label>
+			<input type="text" v-on:keyup="logAge" class="put"/><br />
+			<input type="text" name="" id="" value="" v-on:keyup="keyup" />
+			<input type="text" v-on:keyup.shift="shift" />    <!--按住shift和任意键触发-->
+			<button v-on:click.alt="shift">click it</button>  <!--按下shift的同时点击触发事件-->
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:"#app",
+			data:{
+				
+			},
+			methods:{
+				logName:function(){
+//					$(input).after("<p>您正在输入</p>");
+                    console.log("您正在输入");
+//                  var $required = $("<strong>您正在输入</strong>"); //创建元素  
+//                  $(".put").parent().append($required); //将它追加到文档中  
+				},
+				logAge:function(){
+					console.log("您正在输入");
+				},
+				keyup: function(event){ 
+					if(event.which == 13){  //which ==13 相当于键盘的回车键 和第一个input效果相同
+						alert("you press enter!");
+					}
+				},
+				shift: function(){
+					alert("shift");
+				}
+			}
+		});
+	</script>
+	<script type="text/javascript">
+		
+	</script>
+</html>

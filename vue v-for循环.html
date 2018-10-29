@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<ul>
+				<li v-for="character in characters">{{character}}</li>
+			</ul>
+			<ul>
+				<li v-for="(user,index) in users">
+				{{index+1}}	{{user.name}} . {{user.age}}
+				</li>
+			</ul>
+			
+			<template v-for="(user,index) in users" >
+				<h3>{{index}} {{user.name}}</h3>
+				<p>Age - {{user.age}}</p>
+			</template>
+			
+			<template v-for="(user,index) in users">
+				<div v-for="(val,key) in user">
+					<p>{{key}} - {{val}}</p>
+				</div>
+			</template>
+		</div>
+		
+		
+	</body>
+	<script src="js/vue.js"></script>
+	<script type="text/javascript">
+		new Vue({
+			el:'#app',
+			data:{
+				characters:["diqi","lisi"],
+				users:[
+				{name:'张三',age:20},
+				{name:'李四',age:30}
+				]
+			},
+			 methods: {
+			 	
+		   }
+
+		});
+	</script>
+</html>
